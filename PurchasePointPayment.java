@@ -8,15 +8,16 @@ class PurchasePointPayment {
         if (!customer.isEnabled()){
             throw new IllegalArgumentException("有効な購入者ではありません。");
         }
-        customerId = customer.id;
         if (!comic.isEnabled()) {
             throw new IllegalArgumentException("現在取り扱いのできないコミックです。");
         }
-        comicId = comic.id;
         if (customer.currentPurchasePoint.amount < comic.possessionPoint.amount) {
             throw new RuntimeException("所持ポイントが不足しています。");
         }
-    
+        
+        customerId = customer.id;
+        comicId = comic.id;
+        
         consumptionPoint = comic.currentPurchasePoint;
         paymentDateTime = LocalDateTime.now();
     }
